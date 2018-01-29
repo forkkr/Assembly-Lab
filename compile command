@@ -1,0 +1,3 @@
+nasm -f elf64 -l loop loop.asm 
+gcc -m64 -o loop loop.o
+./loop
