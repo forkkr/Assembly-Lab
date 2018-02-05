@@ -29,7 +29,7 @@ call scanf
 mov rax , [a]
 mov rbx , 10
 mov rcx , 0
-
+;palindrome number check
 ll:
 xor rdx , rdx
 div rbx
@@ -74,7 +74,7 @@ xor rax , rax
 call printf
 ret
 
-
+;gcd---------
 ;mov rdx, 0
 ;mov rax ,[a]
 ;mov rbx ,[b]
@@ -94,7 +94,7 @@ ret
 ;ret
 
 
-
+;primeCheck----------
 ;
 ;div rbx
 ;mov rcx , rax
