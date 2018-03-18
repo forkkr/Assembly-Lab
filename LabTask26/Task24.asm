@@ -3,6 +3,8 @@ segment .data
 	equalfmt: dq "Equal",10 , 0
 	notequalfmt: dq "Not Equal" , 10, 0
 	fmt: dq "%lld" , 10 ,0
+	prr: dq "",10,0
+
 segment .bss
 	str1: resb 100
 	str2: resb 100
@@ -72,15 +74,21 @@ checking_loop:
 	xor rax, rax
 	mov rdi , equalfmt
 	call printf
+
+	xor rax , rax
+	mov rdi , prr
+	call printf
+	
 	pop RBP
 	ret
 notequal_print:
 	xor rax, rax
 	mov rdi , notequalfmt
 	call printf
+
+	xor rax , rax
+	mov rdi , prr
+	call printf
+
 	pop RBP
 	ret
-
-	
-
-
