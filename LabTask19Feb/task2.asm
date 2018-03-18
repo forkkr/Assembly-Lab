@@ -1,5 +1,5 @@
 segment .data
-fmt: dq "%lld ",10,0
+fmt: dq "Value %lld at position %lld",10,0
 ssfmt: dq "%lld",0
 
 
@@ -39,10 +39,11 @@ mov rdi , ssfmt
 mov rsi, d
 call scanf
 mov rax , [d]
+sub rax , 1
 mov rbx , [a+rax*8]
 mov rdi , fmt
 mov rsi , rbx
+mov rdx , [d]
 call printf
 pop RBP
 ret
-
