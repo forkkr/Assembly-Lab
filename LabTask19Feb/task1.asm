@@ -1,5 +1,8 @@
 segment .data
 fmt: dq "%lld ",10,0
+ffmt: dq "Sum: %lld ",10,0
+ppp: dq "Numbers: ",10,0
+prr: dq "",10,0
 ssfmt: dq "%lld",0
 
 
@@ -37,9 +40,18 @@ INC rcx
 cmp rcx , 20
 jne ll
 xor rax , rax
-mov rdi , fmt
+mov rdi , ffmt
 mov rsi , [c]
 call printf
+
+xor rax , rax
+mov rdi , prr
+call printf
+
+xor rax, rax
+mov rdi, ppp
+call printf
+
 xor rcx, rcx
 sll:
 mov [b] , rcx
@@ -54,4 +66,3 @@ cmp rcx , 20
 jne sll
 pop RBP
 ret
-
