@@ -1,5 +1,5 @@
 segment .data
-fmt: dq "%lld ",10,0
+fmt: dq "Third largest number: %lld ",10,0
 ssfmt: dq "%lld",0
 
 
@@ -77,5 +77,3 @@ call printf
 
 pop RBP
 ret
-
-
