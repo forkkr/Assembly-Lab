@@ -126,40 +126,40 @@ show:
 
 
 proc:
-mov r9 , 2
+	mov r9 , 2
 
-mov [proc_con] , r9
-mov r10 , [parameter]
-cmp r9, r10
-jg chk_exit
+	mov [proc_con] , r9
+	mov r10 , [parameter]
+	cmp r9, r10
+	jg chk_exit
 
-mov r9 , [proc_con]
-mov r10 , [parameter]
-cmp r9, r10
-je prrr
+	mov r9 , [proc_con]
+	mov r10 , [parameter]
+	cmp r9, r10
+	je addPrimeToList
 
 chkloop:
-mov [proc_con] , r9
-mov rax , [parameter]
-xor rdx ,rdx
-div r9
-cmp rdx , 0
-je chk_exit
+	mov [proc_con] , r9
+	mov rax , [parameter]
+	xor rdx ,rdx
+	div r9
+	cmp rdx , 0
+	je chk_exit
 
-mov r9, [proc_con]
-inc r9
-mov [proc_con] , r9
-mov r10 , [parameter]
-cmp r9, r10
-jne chkloop
+	mov r9, [proc_con]
+	inc r9
+	mov [proc_con] , r9
+	mov r10 , [parameter]
+	cmp r9, r10
+	jne chkloop
 
-prrr:
-mov r8 , [pcon]
-mov r10 , [parameter]
-mov [prime + 8*r8] , r10
-inc r8
-mov [pcon] , r8
+addPrimeToList:
+	mov r8 , [pcon]
+	mov r10 , [parameter]
+	mov [prime + 8*r8] , r10
+	inc r8
+	mov [pcon] , r8
 
 
 chk_exit:
-ret
+	ret
