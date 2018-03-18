@@ -2,7 +2,8 @@ segment .data
 	fmt: dq "%lld %lld",10, 0
 	scfmt: dq "%lld %lld",0
 	prfmt: dq "%lld ",10 , 0
-	sumfmt: dq "Sum: %lld",10,0
+	sumfmt: dq "Difference: %lld",10,0
+	prr: dq "",10,0
 	ppfmt: dq "Prime(s): ",10,0
 
 segment .bss
@@ -99,6 +100,10 @@ print_loop_con:
 
 
 _exit:
+	xor rax , rax
+	mov rdi , prr
+	call printf
+
 	mov rax , [sum1]
 	mov rbx , [sum2]
 	cmp rax , rbx
@@ -111,7 +116,7 @@ _exit:
 	sub rax , [sum2]
 
 show:
-
+	
 	mov rdi , sumfmt
 	mov rsi,rax
 	call printf
@@ -158,5 +163,3 @@ mov [pcon] , r8
 
 chk_exit:
 ret
-
-
