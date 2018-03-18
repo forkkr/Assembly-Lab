@@ -1,5 +1,6 @@
 segment .data
-fmt: dq "Value %lld index %lld ",10,0
+sfmt: dq "Smallest number %lld was found at location %lld ",10,0
+lfmt: dq "Largest number %lld was found at location %lld ",10,0
 ssfmt: dq "%lld",0
 
 
@@ -54,7 +55,7 @@ cmp rcx , 5
 jne first
 
 xor rax , rax
-mov rdi , fmt
+mov rdi , sfmt
 mov rsi , [b]
 mov rdx , [d]
 call printf
@@ -80,7 +81,7 @@ cmp rcx , 5
 jne second
 
 xor rax , rax
-mov rdi , fmt
+mov rdi , lfmt
 mov rsi , [b]
 mov rdx , [d]
 call printf
@@ -88,5 +89,3 @@ call printf
 
 pop RBP
 ret
-
-
