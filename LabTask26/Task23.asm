@@ -4,7 +4,7 @@ segment .data
 	prr: dq "",10,0
 	fmt1: dq "Give %lld more numbers.",10,0
 	fmt2: dq "Number already exists. Give %lld more numbers.",10,0
-	fmt3: dq "The 10 numbers: ",10,0
+	fmt3: dq "The 10 numbers: "
 
 segment .bss
 	array: resq 100
@@ -58,6 +58,9 @@ print_loop:
 	cmp rax , rcx
 	jne print_loop
 
+	xor rax , rax
+	mov rdi , prr
+	call printf
 	pop RBP
 	ret
 
@@ -90,6 +93,9 @@ add_new_number:
 	mov rbx , 10
 	sub rbx , rdx
 	
+	cmp rbx , 0
+	je extra_level
+
 	xor rax , rax
 	mov rdi, fmt1
 	mov rsi , rbx
@@ -97,6 +103,11 @@ add_new_number:
 
 	xor rax , rax
 	mov rdi , prr
+	call printf
+	ret
+extra_level:
+	xor rax , rax
+	mov rdi , fmt3
 	call printf
 	ret
 
