@@ -1,6 +1,10 @@
 segment .data
 	scfmt: dq "%lld",0
 	prfmt: dq "%lld ",10 , 0
+	prr: dq "",10,0
+	fmt1: dq "Give %lld more numbers.",10,0
+	fmt2: dq "Number already exists. Give %lld more numbers.",10,0
+	fmt3: dq "The 10 numbers: ",10,0
 
 segment .bss
 	array: resq 100
@@ -81,8 +85,31 @@ add_new_number:
 	mov [array + r10*8] , rax
 	inc r10
 	mov [cnt] , r10
+	
+	mov rdx , [cnt]
+	mov rbx , 10
+	sub rbx , rdx
+	
+	xor rax , rax
+	mov rdi, fmt1
+	mov rsi , rbx
+	call printf
 
-chk_exit:
+	xor rax , rax
+	mov rdi , prr
+	call printf
 	ret
 
+chk_exit:
+	mov rdx , [cnt]
+	mov rbx , 10
+	sub rbx , rdx
 
+	xor rax , rax
+	mov rdi , fmt2
+	mov rsi , rbx
+	call printf
+	xor rax , rax
+	mov rdi , prr
+	call printf
+	ret
