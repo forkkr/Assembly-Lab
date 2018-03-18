@@ -2,6 +2,7 @@ segment .data
 	scfmt: dq "%s",0
 	palin: dq "Palindrome",10 , 0
 	nonPalin: dq "Nonpalindrome" , 10, 0
+	prr: dq "",10,0
 	fmt: dq "%lld" , 10 ,0
 segment .bss
 	str: resb 100
@@ -66,14 +67,18 @@ checking_loop:
 	
 	xor rax ,rax
 	mov rdi , palin
-	call printf 
+	call printf
+
+	mov rdi , prr
+	call printf
 	pop RBP
 	ret
 print_exit:
 	xor rax ,rax
 	mov rdi , nonPalin
 	call printf
+
+	mov rdi, prr
+	call printf
 	pop RBP
 	ret
-
-
