@@ -1,7 +1,8 @@
 segment .data
-fmt: dq "%lld ",10,0
+ffmt: dq "First odd number: %lld",10,0
+prr: dq "",10,0
+sfmt: dq "Last odd number: %lld",10,0
 ssfmt: dq "%lld",0
-
 
 segment .bss
 a: resq 255
@@ -10,6 +11,8 @@ c: resq 1
 d: resq 1
 cnt:  resq 2
 now: resq 2
+fst: resq 1
+snd: resq 1
 
 segment .text
 global main
@@ -69,10 +72,10 @@ mov rax , [now]
 add rax , 1
 mov [now] , rax
 cmp rax , 1
-je _en
+je _en1
 mov rbx ,[cnt]
 cmp rax , rbx
-je _en
+je _en2
 
 lpcon:
 mov rcx, [b]
@@ -80,14 +83,28 @@ INC rcx
 cmp rcx , 10
 je _exit
 jmp thll
-_en:
+_en1:
 mov rcx , [b]
 mov rax , [a+rcx*8]
-mov rdi , fmt
-mov rsi, rax
-call printf
+mov [fst] , rax
+mov [snd] , rax
+jmp lpcon
+_en2:
+mov rcx , [b]
+mov rax , [a+rcx*8]
+mov [snd] , rax
 jmp lpcon
 _exit:
+mov rdi , ffmt
+mov rsi, [fst]
+call printf
+xor rax , rax
+mov rdi , prr
+call printf
+xor rax , rax
+mov rdi , sfmt
+mov rsi , [snd]
+call printf
+
 pop RBP
 ret
-
